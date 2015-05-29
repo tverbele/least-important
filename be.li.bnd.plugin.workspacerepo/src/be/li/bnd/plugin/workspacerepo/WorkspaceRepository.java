@@ -42,7 +42,9 @@ public class WorkspaceRepository implements Plugin, RepositoryPlugin{
 
 			// TODO which repositories to back? only the workspace, also local, all? 
 			repos.add(ws.getWorkspaceRepository());
-			repos.add(ws.getRepository("Local"));
+			RepositoryPlugin local = ws.getRepository("Local");
+			if(local!=null)
+				repos.add(local);
 			ws.close();
 		} catch(Exception e){
 			e.printStackTrace();
